@@ -84,7 +84,6 @@ fi
 if [[ "`aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $(get_pr "ASG_NAME") 2>/dev/null | wc -l`" != "3" ]]
 then
 let NEW_SIZE=`get_pr "ASG_MAX_SIZE"`*2
-echo "$NEW_SIZE"
 echo "ASG up!"
 echo "Create new instances"
 aws autoscaling update-auto-scaling-group --auto-scaling-group-name `get_pr "ASG_NAME"` \
