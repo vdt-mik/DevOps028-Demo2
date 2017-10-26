@@ -9,7 +9,7 @@ node ('Slave'){
   withEnv(javaEnv) {
     stage('Clear & Checkout') {
       cleanWs()
-      git url: 'https://github.com/vdt-mik/DevOps028'
+      git url: 'https://github.com/vdt-mik/DevOps028-Demo2'
     }
     stage('Test & Build') {
       try {
@@ -36,7 +36,7 @@ node ('Slave'){
     sh 'chmod +x aws/asg.sh && ./aws/asg.sh'
   }  
   stage('Check APP') {
-    timeout(time: 1, unit: 'MINUTES') {
+    timeout(time: 2, unit: 'MINUTES') {
       waitUntil {
         try {
           APP_URI = sh(
