@@ -1,0 +1,5 @@
+ALTER TABLE item
+  ADD COLUMN manufacture_date TIMESTAMP NOT NULL;
+
+ALTER TABLE item
+  ADD COLUMN aging_factor NUMERIC(15,2) NOT NULL;

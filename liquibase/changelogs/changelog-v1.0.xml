@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="Roman Voievidko" id="Initial">
+        <sqlFile path="sql/initialDBScript.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet author="yanair (generated)" id="add item event type">
+
+        <sqlFile path="sql/add_itemEventType.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/add_itemEventType_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="yanair (generated)" id="add item user role">
+
+        <sqlFile path="sql/add_item_userRole.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/add_item_userRole_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="yanair (generated)" id="drop item_event_type table and constraints">
+
+        <sqlFile path="sql/drop_itemEventType_table_and_constraints.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/drop_itemEventType_table_and_constraints_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="yanair (generated)" id="drop user_role table and constraints">
+
+        <sqlFile path="sql/drop_userRole_table.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/drop_userRole_table_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="brytskyi" id="drop not_null department constraint in user table">
+       <sqlFile path="sql/drop_not_null_department_constraint_in_user_table.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/drop_not_null_department_constraint_in_user_table_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add_unique_constraint_login" author="Eugene A. Savchenko">
+        <addUniqueConstraint tableName="user_credentials" columnNames="login"/>
+    </changeSet>
+
+    <changeSet id="move columns from table user_credential to user table" author="brytskyi">
+
+        <sqlFile path="sql/move_columns_from_userCredentials_to_user.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/move_columns_from_userCredentials_to_user_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="add manufacture_date and aging_factor into item table" author="brytskyi">
+
+        <sqlFile path="sql/add_manufactureDate_and_agingFactor_into_item.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/add_manufactureDate_and_agingFactor_into_item_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="remove address, email, phone contact_id column not null constr" author="brytskyi">
+
+        <sqlFile path="sql/remove_address_emails_phone_contactId_notNull_constraint.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/remove_address_emails_phone_contactId_notNull_constraint_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet id="population" author="Andrii Demyanenko">
+
+        <sqlFile path="sql/population.sql" relativeToChangelogFile="true"/>
+
+    </changeSet>
+
+    <changeSet id="change login column length to 60 as it need BCrypt" author="brytskyi">
+
+        <sqlFile path="sql/change_pass_column_length.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/change_pass_column_length_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet
+            id="update (hash) passwords from population script, change login 'login1' to 'superadmin', and passqord to 'mysecretpassword' "
+            author="brytskyi">
+
+        <sqlFile path="sql/hash_passwords_update_superadmin.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/hash_passwords_update_superadmin_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add a new setting" author="Mykhailo">
+        <sqlFile path="sql/create_changelog_setting.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="sql/kafka_topics_name_table.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/create_changelog_setting_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="change item_id column type in item_log table" author="Andrii Demyanenko">
+
+        <sqlFile path="sql/change_itemID_column_type_in_itemLog_table.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="aql/change_itemID_column_type_in_itemLog_table_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet id="change common item usage duration type" author="Yana Kostiuk">
+        <sqlFile path="sql/change_usage_duration_type.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/rollback_change_usage_duration_type.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="drop FK in user_common_item_event" author="Yana Kostiuk">
+        <sqlFile path="sql/drop_fk_in_user_common_item_event.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/rollback_drop_fk_in_user_common_item_event.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add settingID column to topic_names table" author="Andrii Demyanenko">
+        <addColumn catalogName="auradb"
+                   schemaName="public"
+                   tableName="topic_names">
+            <column name="setting_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="topic_names" baseColumnNames="setting_id" constraintName="fk_setting_id" referencedTableName="setting"
+                                 referencedColumnNames="id"/>
+
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="topic_names"/>
+            <dropColumn tableName="topic_names" columnName="setting_id"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

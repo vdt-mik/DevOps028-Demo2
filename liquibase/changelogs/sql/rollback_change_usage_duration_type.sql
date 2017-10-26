@@ -1,0 +1,1 @@
+ALTER TABLE user_common_item_event ALTER COLUMN usage_duration TYPE numeric(3,2);

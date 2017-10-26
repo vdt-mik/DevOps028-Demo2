@@ -1,0 +1,12 @@
+spring.freemarker.template-loader-path: classpath*:/templates
+spring.freemarker.suffix: .ftl
+logging.level.root=info
+server.port=9000
+spring.datasource.url=jdbc:postgresql://192.168.96.173:5432/auradb
+spring.datasource.username=aura
+spring.datasource.password=mysecretpassword
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=validate
+jwtTokenCookieName=JWT-TOKEN
+signingKey=signingKey
+domain=localhost
